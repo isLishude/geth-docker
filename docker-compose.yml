@@ -17,15 +17,13 @@ services:
     command:
       - --rpc
       - --rpcapi
-      - "debug,eth,net,shh,txpool,web3"
+      - "eth,txpool,web3"
       - --rpcaddr
       - geth
       - --rpcvhosts=*
       - --txpool.globalslots=20000 
       - --txpool.accountqueue=256
       - --txpool.globalqueue=20000
-      - --syncmode
-      - full
       - --cache=1024
 
   nginx:
