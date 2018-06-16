@@ -21,9 +21,6 @@ services:
       - --rpcaddr
       - geth
       - --rpcvhosts=*
-      - --txpool.globalslots=20000 
-      - --txpool.accountqueue=256
-      - --txpool.globalqueue=20000
       - --cache=1024
 
   nginx:
