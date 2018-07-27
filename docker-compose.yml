@@ -16,7 +16,8 @@ services:
       - eth
     command:
       - --rpc
-      - --rpcapi="eth,txpool,web3"
+      - --rpcapi
+      - "eth,txpool,web3"
       - --rpcaddr=geth
       - --rpcvhosts=*
       - --cache=2048
