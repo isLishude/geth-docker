@@ -19,7 +19,7 @@ services:
       - --rpcapi="eth,txpool,web3"
       - --rpcaddr=geth
       - --rpcvhosts=*
-      - --cache=1024
+      - --cache=2048
       - --maxpeers=100
 
   nginx:
