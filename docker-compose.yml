@@ -16,12 +16,11 @@ services:
       - eth
     command:
       - --rpc
-      - --rpcapi
-      - "eth,txpool,web3"
-      - --rpcaddr
-      - geth
+      - --rpcapi="eth,txpool,web3"
+      - --rpcaddr=geth
       - --rpcvhosts=*
       - --cache=1024
+      - --maxpeers=100
 
   nginx:
     image: "nginx:alpine"
