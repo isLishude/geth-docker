@@ -1,8 +1,8 @@
 version: "3"
 
 services:
-  geth:
-    image: "ethereum/client-go:v1.9.7"
+  parity:
+    build: .
     restart: unless-stopped
     ports:
       - "30303:30303"
@@ -10,32 +10,27 @@ services:
       - "8545:8545"
       - "8546:8546"
     volumes:
-      - ${PWD}/chaindata:/home/geth/.ethereum
+      - ${PWD}/.parity:/home/parity/.local/share/io.parity.ethereum
     stop_signal: SIGINT
     stop_grace_period: 2m
     command:
-      - --rpc
-      - --rpcapi
-      - "eth,txpool,net,web3"
-      - --rpcaddr=0.0.0.0
-      - --rpcvhosts=*
-      - --rpccorsdomain=*
-      - --ws
-      - --wsorigins=*
-      # Minimum number of executable transaction slots guaranteed per account (default: 16)
-      # - --txpool.accountslots=16
-      # Maximum number of non-executable transaction slots for all accounts (default: 1024)
-      # --txpool.globalqueue=1024
-      # Maximum number of executable transaction slots for all accounts (default: 4096)
-      # - --txpool.globalslots=10000
-      # Maximum amount of time non-executable transaction are queued (default: 3h0m0s)
-      # - --txpool.lifetime=3h0m0s
-      # Megabytes of memory allocated to internal caching (default: 1024)
-      # - --cache=4096
-      # Maximum number of network peers (network disabled if set to 0) (default: 25)
-      # - --maxpeers=100
-      # Blockchain sync mode ("fast", "full", or "light")
-      # - --syncmode=fast
+      - --no-config
+      - --no-discovery
+      - --identity=testrpc
+      - --auto-update=none
+      - --tracing=on
+      - --chain=/home/parity/genesis.json
+      - --unsafe-expose=all
+      - --min-gas-price=0
+      - --ipc-apis=all
+      - --jsonrpc-experimental
+      - --jsonrpc-interface=all
+      - --jsonrpc-apis=all
+      - --jsonrpc-cors=all
+      - --jsonrpc-server-threads=4
+      - --ws-interface=all
+      - --ws-origins=all
+      - --ws-apis=all
     logging:
       driver: "json-file"
       options:
