@@ -1,4 +1,2 @@
-log/*
-!log/.gitkeep
-.ethereum
-auth.txt
+chaindata
+log
